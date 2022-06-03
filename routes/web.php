@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\{HomeController,
+                        CustomerController,
+                        ProductController,
+                        SalesController,
+                        StatusSalesController
+                        };
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('customers',CustomerController::class);
+Route::resource('products',ProductController::class);
+Route::resource('sales',SalesController::class);
+Route::resource('satuan',StatusSalesController::class);
+
+
+
